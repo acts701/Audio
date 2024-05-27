@@ -25,8 +25,8 @@ print(f"FFmpeg found: {which('ffmpeg')}")
 print(f"ffprobe found: {which('ffprobe')}")
 
 downpath = r"C:\\Users\\acts7\\Downloads"
-inputfilepath = downpath + "\\" + "call.m4a"
-outputfilepath = downpath + "\\" + "callout.wav"
+inputfilepath = downpath + "\\" + "call_kor.m4a"
+outputfilepath = downpath + "\\" + "call_kor_out.wav"
 
 AudioSegment.converter = which("ffmpeg")
 AudioSegment.ffprobe = which("ffprobe")
