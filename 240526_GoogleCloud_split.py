@@ -21,12 +21,19 @@ def transcribe_chunk(chunk, client):
 
 def main():
     client = speech.SpeechClient()
-    chunks = split_audio('C:\\Users\\acts7\\Downloads\\callout.wav')
-    for i, chunk in enumerate(chunks):
-        print(f"Processing chunk {i+1}/{len(chunks)}")
-        response = transcribe_chunk(chunk, client)
-        for result in response.results:
-            print('Transcript: {}'.format(result.alternatives[0].transcript))
+    chunks = split_audio('C:\\Users\\acts7\\Downloads\\call.wav')
+    
+    # 결과를 저장할 파일 열기
+    with open('transcription.txt', 'w', encoding='utf-8') as f:
+        for i, chunk in enumerate(chunks):
+            print(f"Processing chunk {i+1}/{len(chunks)}")
+            response = transcribe_chunk(chunk, client)
+            for result in response.results:
+                transcript = result.alternatives[0].transcript
+                print(f'Transcript: {transcript}')
+                # 텍스트 파일에 저장
+                f.write(f'Chunk {i+1}/{len(chunks)}:\n')
+                f.write(f'{transcript}\n\n')
 
 if __name__ == '__main__':
     main()
