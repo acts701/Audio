@@ -11,7 +11,7 @@ downpath = config['PATH']['DOWNLOAD_FOLDER']
 
 # FFmpeg 및 ffprobe 경로 설정
 ffmpeg_path = downpath + "ffmpeg/bin/ffmpeg.exe"  # FFmpeg 실행 파일 경로
-ffprobe_path = downpath + "/ffmpeg/bin/ffprobe.exe"  # ffprobe 실행 파일 경로
+ffprobe_path = downpath + "ffmpeg/bin/ffprobe.exe"  # ffprobe 실행 파일 경로
 
 # FFmpeg 및 ffprobe 경로 환경 변수에 추가
 os.environ["PATH"] += os.pathsep + os.path.dirname(ffmpeg_path)

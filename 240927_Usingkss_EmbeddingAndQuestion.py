@@ -1,8 +1,13 @@
 from kss import split_sentences
 import torch
 from sentence_transformers import SentenceTransformer, util
+import configparser
 
-with open(r'C:/sermons/Isaiah/160601_Isaiah01.txt') as file_path:
+config = configparser.ConfigParser()
+config.read('config.json')
+downpath = config['PATH']['DOWNLOAD_FOLDER']
+
+with open(config["PATH"]["AUDIO_SAMPLE_FILE"]) as file_path:
   contents = file_path.read()
   sentences = split_sentences(contents)  
 
@@ -10,7 +15,7 @@ model = SentenceTransformer("Huffon/sentence-klue-roberta-base")
 
 document_embeddings = model.encode(sentences)
 
-query = "이사야에 나온 출애굽기 용어는"
+query = config["SampleQuery"]["ISAIAH01"]
 query_embedding = model.encode(query)
 
 top_k = min(5, len(sentences))
