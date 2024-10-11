@@ -2,6 +2,11 @@ from pydub import AudioSegment
 import io
 import os
 from google.cloud import speech_v1p1beta1 as speech
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.json')
+downpath = config['PATH']['DOWNLOAD_FOLDER']
 
 def split_audio(file_path, chunk_length_ms=10000):
     audio = AudioSegment.from_wav(file_path)
@@ -21,7 +26,7 @@ def transcribe_chunk(chunk, client):
 
 def main():
     client = speech.SpeechClient()
-    chunks = split_audio('C:\\Users\\acts7\\Downloads\\call_kor.wav')
+    chunks = split_audio(downpath + 'call_kor.wav')
     
     # 결과를 저장할 파일 열기
     with open('transcription_kor.txt', 'w', encoding='utf-8') as f:

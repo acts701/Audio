@@ -3,10 +3,15 @@ import os
 from pydub import AudioSegment
 from pydub.utils import which
 import speech_recognition as sr
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.json')
+downpath = config['PATH']['DOWNLOAD_FOLDER']
 
 # FFmpeg 및 ffprobe 경로 설정
-ffmpeg_path = r"C:\Users\acts7\Downloads\ffmpeg\bin\ffmpeg.exe"  # FFmpeg 실행 파일 경로
-ffprobe_path = r"C:\Users\acts7\Downloads\ffmpeg\bin\ffprobe.exe"  # ffprobe 실행 파일 경로
+ffmpeg_path = downpath + "ffmpeg/bin/ffmpeg.exe"  # FFmpeg 실행 파일 경로
+ffprobe_path = downpath + "/ffmpeg/bin/ffprobe.exe"  # ffprobe 실행 파일 경로
 
 # FFmpeg 및 ffprobe 경로 환경 변수에 추가
 os.environ["PATH"] += os.pathsep + os.path.dirname(ffmpeg_path)
@@ -24,7 +29,7 @@ except subprocess.CalledProcessError as e:
 print(f"FFmpeg found: {which('ffmpeg')}")
 print(f"ffprobe found: {which('ffprobe')}")
 
-downpath = r"C:\\Users\\acts7\\Downloads"
+
 inputfilepath = downpath + "\\" + "call_kor.m4a"
 outputfilepath = downpath + "\\" + "call_kor_out.wav"
 

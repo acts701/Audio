@@ -1,8 +1,12 @@
 from google.cloud import speech_v1p1beta1 as speech
 import io
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.json')
+downpath = config['PATH']['DOWNLOAD_FOLDER']
 
 # size limit is 10mb
-downpath = r"C:\\Users\\acts7\\Downloads"
 inputfilepath = downpath + "\\" + "call.m4a"
 print("dbg01")
 client = speech.SpeechClient()
